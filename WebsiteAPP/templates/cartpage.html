@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Cart page</h1>
+<form method="POST" action="{% url 'check_outpage' %}">
+    {% csrf_token %}
+    <label>The current Active user is :{{currentusername}}</label><br><br>
+    <table border="2px" width="100%">
+       <tr>
+            <th>ProductName</th>
+        <th>Price Per quantity</th>
+        <th>Quantity</th>
+        <th>Total</th>
+        <th>Product Image</th>
+       </tr>
+
+
+        {% for i in cartdata %}
+        <tr>
+            <td>{{i.Product_Name}}</td>
+            <td>{{i.Price_Per_Quantity}}</td>
+            <td>{{i.No_of_orders}}</td>
+            <td>{{i.Total_price}}</td>
+            <td>
+                <img src="{{i.Prod_Img.url}}" width="80px" height="80px">
+            </td>
+        </tr>
+        {% endfor %}
+
+    </table>
+    <br><br>
+    <label>Subtotal</label>
+    <input type="number" value="{{SubTotal}}"><br><br>
+    <label>Shipping Charge</label>
+    <input type="number" value="{{ShippingCharge}}" readonly><br><br>
+    <label>Final amount</label>
+    <input type="number" value="{{Final_Pay}}" readonly><br><br>
+    <button type="submit">Proceed to Pay</button>
+</form>
+
+
+</body>
+</html>

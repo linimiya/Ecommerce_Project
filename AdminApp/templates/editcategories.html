@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Add categories page</h1>
+<form method="POST" action="{% url 'updateCategory_DB' u_id=edobj.id %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="container-fluid">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title fw-semibold mb-4">Forms</h5>
+                    <div class="card">
+                        <div class="card-body">
+
+                            <div class="mb-3">
+                                <label class="form-label">Category Name</label>
+                                <input type="text" class="form-control" name="tcatname" value="{{edobj.Category_Name}}">
+                                <div class="form-text">Enter category here</div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">upload image1</label>
+                                <img src="{{edobj.Category_Image1.url}}" height="100px" width="70px">
+                                <input type="file" class="form-control" name="timage1">
+                            </div>
+                            <div class="mb-3">
+                                <img src="{{edobj.Category_Image2.url}}" height="100px" width="70px">
+                                <label class="form-label">upload image2</label>
+                                <input type="file" class="form-control" name="timage2">
+                            </div>
+                            <div class="mb-3">
+                                <img src="{{edobj.Category_Image3.url}}" height="100px" width="70px">
+                                <label class="form-label">upload image3</label>
+                                <input type="file" class="form-control" name="timage3">
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Submit</button>
+
+                        </div>
+</form>
+</body>
+</html>
+{% endblock %}
